@@ -39,7 +39,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/data/scripts/mailapi/api"
+VIRTUAL_ENV="/data/Final_Project/scripts/mailapi/api"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

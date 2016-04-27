@@ -27,7 +27,7 @@ class Fastest(Resource):
 
   def get(self, state):
       conn = e.connect()
-      query = conn.execute("SELECT lettershop, cnt, averagepostal FROM lsstate WHERE state = '%s' ORDER BY averagepostal LIMIT 1" % state )
+      query = conn.execute("SELECT lettershop, cnt, averagepostal FROM lsstate WHERE state = '%s' GROUP BY lettershop, cnt, averagepostal ORDER BY averagepostal ASC LIMIT 3" % state )
       print query
       result = {"fastest": [{"lettershop":i[0], "quantity":i[1], "average_postal_delivery":i[2]} for i in query.cursor.fetchall()]}
       print result

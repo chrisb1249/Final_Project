@@ -1,16 +1,16 @@
-rm lsstate_stats_dump.bak
-cp lsstate_stats_dump.csv lsstate_stats_dump.bak
-rm lssummary_stats_dump.bak
-cp lssummary_stats_dump.csv lssummary_stats_dump.bak
-rm lszipbyday_stats_dump.bak 
-cp lszipbyday_stats_dump.csv lszipbyday_stats_dump.bak
+rm ./data/lsstate_stats_dump.bak
+cp ./data/lsstate_stats_dump.csv ./data/lsstate_stats_dump.bak
+rm ./data/lssummary_stats_dump.bak
+cp ./data/lssummary_stats_dump.csv ./data/lssummary_stats_dump.bak
+rm ./data/lszipbyday_stats_dump.bak 
+cp ./data/lszipbyday_stats_dump.csv ./data/lszipbyday_stats_dump.bak
 
-hive -e 'select * from lsstate_stats' | sed 's/[/t]/,/g' > lsstate_stats_dump.csv
+hive -e 'select * from lsstate_stats' | sed 's/[/t]/,/g' > ./data/lsstate_stats_dump.csv
 
-hive -e 'select * from lssummary_stats' | sed 's/[/t]/,/g' > lssummary_stats_dump.csv
+hive -e 'select * from lssummary_stats' | sed 's/[/t]/,/g' > ./data/lssummary_stats_dump.csv
 
-hive -e 'select * from lszipbyday_stats' | sed 's/[/t]/,/g' > lszipbyday_stats_dump.csv
+hive -e 'select * from lszipbyday_stats' | sed 's/[/t]/,/g' > ./data/lszipbyday_stats_dump.csv
 
-psql -U postgres -d maildb -c "COPY lsstate FROM '/data/scripts/lsstate_stats_dump.csv' delimiter E'\t' csv;"
+psql -U postgres -d maildb -c "COPY lsstate FROM '/data/Final_Project/scripts/data/lsstate_stats_dump.csv' delimiter E'\t' csv;"
 \q
 
